@@ -1,5 +1,6 @@
 
 var user = new String
+var msgObj = [];
 var messageCount = 0
 $(document).ready(()=> {
     getName();
@@ -63,39 +64,45 @@ var  updateScrollbar = () => {
 
 var getNewMessages = () =>{
     $.get("/getNewMessages", (data,status)=>{
-        var length = data.length
-        var username = new String
-       if(data.length>messageCount){
-           for(let i = messageCount;i<length;i++){
-               element = data[i];
-            if(element.name === user ){
-                cls = "self"
-                username = ''
-            }else{
-                cls = "other"
-                username = ` <div class="user">${element.name}</div>    `
+        var dataLen = data.length 
+        if(dataLen>msgObj.length){
+            for(let i = messageCount;i<dataLen;i++){
+                msgObj.push(data[i]);
             }
-            var msg =` <li class=${cls}>
-            <div class="msg">
-            ${username}
-        <p>${element.text}</p>
-              <time>${element.time}</time>
-            </div>
-          </li>`
-          
-            $(msg).appendTo($('.chat'))
-           }
-       }
-       fillMessages();
+            fun();
+        }
     });
     
 }
-
-var fillMessages = ()=> {
-    $.get("/getNewMessages", (data,status)=>{
-        messageCount = data.length;
-    });
+var fun = () =>{
+    var username = new String
+    var len = msgObj.length
+        for(let i = messageCount;i<len;i++){
+            element = msgObj[i];
+         if(element.name === user ){
+             cls = "self"
+             username = ''
+         }else{
+             cls = "other"
+             username = ` <div class="user">${element.name}</div>    `
+         }
+         var msg =` <li class=${cls}>
+         <div class="msg">
+         ${username}
+     <p>${element.text}</p>
+           <time>${element.time}</time>
+         </div>
+       </li>`
+       
+         $(msg).appendTo($('.chat'))
+        }
+    messageCount = len
 }
+// var fillMessages = ()=> {
+//     $.get("/getNewMessages", (data,status)=>{
+//         messageCount = data.length;
+//     });
+// }
 
 
 // setTimeout(function() {
