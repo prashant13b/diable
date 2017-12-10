@@ -333,7 +333,7 @@ emoji{
     border: none;
     outline: none;
 }
-textarea, textarea:hover {
+textarea{
     position: absolute;
     bottom: 0px;
     left: 8%;
@@ -356,10 +356,6 @@ textarea, textarea:hover {
     z-index: 200;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     transition: all .4s cubic-bezier(0.565, -0.260, 0.255, 1.410);
-}
-.textarea-click {
-    height: 300px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
 }
 .send {
     position: fixed;
@@ -428,14 +424,14 @@ textarea, textarea:hover {
         box-shadow: none;
         transition: all .4s cubic-bezier(0.2, -0.2, 0.2, 1.2);
     }
-    textarea:focus {
+    /* textarea:focus {
         height: 30vh;
         margin-top: 30vh;
         box-shadow: 0px -20px 20px rgba(0,0,0,0.1);
     }
     form:focus ~ .typezone {
         bottom: 50vh;
-    }
+    } */
 }
 @media screen and (max-width: 550px) {
     .msg p {
@@ -786,7 +782,7 @@ emoji{
     border: none;
     outline: none;
 }
-textarea, textarea:hover {
+/* textarea, textarea:hover {
     position: absolute;
     bottom: 0px;
     left: 8%;
@@ -813,7 +809,7 @@ textarea, textarea:hover {
 textarea:focus {
     height: 300px;
     box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-}
+} */
 .send {
     position: fixed;
     display: block;
@@ -884,14 +880,14 @@ textarea:focus {
         box-shadow: none;
         transition: all .4s cubic-bezier(0.2, -0.2, 0.2, 1.2);
     }
-    textarea:focus {
+    /* textarea:focus {
         height: 30vh;
         margin-top: 30vh;
         box-shadow: 0px -20px 20px rgba(0,0,0,0.1);
     }
     form:focus ~ .typezone {
         bottom: 50vh;
-    }
+    } */
 }
 @media screen and (max-width: 550px) {
     .msg p {

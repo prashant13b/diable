@@ -34,11 +34,11 @@ var insertMessage = ()=> {
     $('.message-input').val(null);
     $.post('/newMessage',{txtmsg: msg}).then((msg)=>{
             getNewMessages();
-       updateScrollbar();
+       
     }).catch((err)=>{
         console.log(err);
     })
-
+    updateScrollbar();
 }
 
 
@@ -54,7 +54,8 @@ var insertMessage = ()=> {
 // });
 
 var  updateScrollbar = () => {
-    $('.chat').scrollTop(1E10);
+    $('html,body').animate({ scrollTop: 9999 }, 'slow');
+    
 // $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
 // scrollInertia: 10,
 // timeout: 0
