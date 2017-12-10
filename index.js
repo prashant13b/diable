@@ -23,5 +23,6 @@ app.use(express.static(__dirname + '/public'));
 app.use('/',routes);
 
 app.listen(config.port,()=>{
-    console.log(`Listing at port ${config.port}`)
-})
+    console.log(`Working at ${config.port}`);
+  });
+  
