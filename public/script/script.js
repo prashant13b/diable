@@ -5,8 +5,8 @@ var messageCount = 0
 $(document).ready(()=> {
     getName();
     getNewMessages();
-    updateScrollbar();
-    $('.message-submit').click(function() {
+   // updateScrollbar();
+    $('.send').click(function() {
         insertMessage();
         });
         
@@ -27,18 +27,18 @@ var getName = () => {
 }
 
 var insertMessage = ()=> {
-    msg = $('.message-input').val();
+    msg = $('.input-msg').val();
     if ($.trim(msg) == '') {
         return false;
     }
-    $('.message-input').val(null);
+    $('.input-msg').val(null);
     $.post('/newMessage',{txtmsg: msg}).then((msg)=>{
             getNewMessages();
        
     }).catch((err)=>{
         console.log(err);
     })
-    updateScrollbar();
+    //updateScrollbar();
 }
 
 
@@ -53,15 +53,15 @@ var insertMessage = ()=> {
 // }, 100);
 // });
 
-var  updateScrollbar = () => {
-    $('html,body').animate({ scrollTop: 9999 }, 'slow');
+// var  updateScrollbar = () => {
+//     $('html,body').animate({ scrollTop: 9999 }, 'slow');
     
 // $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
 // scrollInertia: 10,
 // timeout: 0
 // });
 
-}
+// }
 
 var getNewMessages = () =>{
     $.get("/getNewMessages", (data,status)=>{
@@ -81,21 +81,24 @@ var fun = () =>{
         for(let i = messageCount;i<len;i++){
             element = msgObj[i];
          if(element.name === user ){
-             cls = "self"
+             cls = "sent"
              username = ''
          }else{
-             cls = "other"
-             username = ` <div class="user">${element.name}</div>    `
+             cls = "received"
+             username = `<span class="meta-data">         
+             <span class="user-name">${element.name} : </span>
+             </span>
+             `
          }
-         var msg =` <li class=${cls}>
-         <div class="msg">
-         ${username}
-     <p>${element.text}</p>
-           <time>${element.time}</time>
-         </div>
-       </li>`
+         var msg =` <div class="message ${cls}">
+            ${username}
+            ${element.text}
+         <span class="metadata">
+             <span class="time">${element.time}</span>
+         </span>
+       </div>`
        
-         $(msg).appendTo($('.chat'))
+         $(msg).appendTo($('.conversation-container'))
         }
     messageCount = len
 }
