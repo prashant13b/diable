@@ -148,7 +148,7 @@
   .conversation {
     height: calc(100% - 12px);
     position: relative;
-    background: #efe7dd url("https://i.imgur.com/gHOUFqn.jpg") repeat;
+    background: #efe7dd repeat;
     z-index: 0;
   }
   
