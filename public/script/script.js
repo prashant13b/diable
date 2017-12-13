@@ -32,7 +32,11 @@ var insertMessage = ()=> {
         return false;
     }
     $('.input-msg').val(null);
-    $.post('/newMessage',{txtmsg: msg}).then((msg)=>{
+    var time = new Date();
+    $.post('/newMessage',{txtmsg: msg,time:{
+        Min: time.getMinutes(),
+        Hour: time.getHours()
+    } }).then((msg)=>{
             getNewMessages();
        
     }).catch((err)=>{

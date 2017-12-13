@@ -53,8 +53,8 @@ exports.setname = (req,res)=>{
     }
 
 exports.newMessage = ((req,res)=>{
-    var time = new Date();
-    var timeMin = `${time.getMinutes()}`
+    var time = req.body.time;
+    var timeMin = `${time.Min}`
     if(time.getMinutes()<10){
         timeMin = `0${timeMin}`
     }
@@ -65,7 +65,7 @@ exports.newMessage = ((req,res)=>{
         var message = new Message({
             name: usr.name,
             text: msg,
-            time: `${time.getHours()}:${timeMin}`
+            time: `${time.Hour}:${timeMin}`
         });
         message.save().then((message) => {
             Message.count().then((c) => {
