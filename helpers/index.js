@@ -55,7 +55,7 @@ exports.setname = (req,res)=>{
 exports.newMessage = ((req,res)=>{
     var time = req.body.time;
     var timeMin = `${time.Min}`
-    if(time.getMinutes()<10){
+    if(time.Min<10){
         timeMin = `0${timeMin}`
     }
     var msg = req.body.txtmsg;
